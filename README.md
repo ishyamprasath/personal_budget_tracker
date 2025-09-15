@@ -84,7 +84,7 @@ Terminal 2: Start the Frontend Tailwind Compiler
 # In the /frontend directory
 npm run dev
 ```
-#This command will watch for changes in your HTML and tailwind.css files and automatically recompile your main.css file. To view the app, open frontend/index.html in your browser, preferably with a live-reloading extension like Live Server for VS Code.
+This command will watch for changes in your HTML and tailwind.css files and automatically recompile your main.css file. To view the app, open frontend/index.html in your browser, preferably with a live-reloading extension like Live Server for VS Code.
 ---
 ## 📁 Project Structure
 The project is organized into two main parts: backend and frontend.
@@ -124,7 +124,7 @@ npm run build:css
 ```
 ---
 ## 📱 Responsive Design
-#The app is built with a responsive, mobile-first approach using Tailwind CSS's standard breakpoints:
+The app is built with a responsive, mobile-first approach using Tailwind CSS's standard breakpoints:
 sm: 640px
 md: 768px
 lg: 1024px
