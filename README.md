@@ -44,13 +44,12 @@ Follow these steps to get your development environment running.
 ```bash
 git clone https://github.com/your-username/personal-budget-tracker.git
 cd personal-budget-tracker
+```
 2. Backend Setup
 The backend serves the API that the frontend communicates with.
-code
-Bash
+```bash
 # Navigate to the backend directory
 cd backend
-
 # Install dependencies
 npm install
 
@@ -62,33 +61,34 @@ code
 Env
 MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/budget-tracker?retryWrites=true&w=majority
 PORT=3000
-3. Frontend Setup
+```
+**3. Frontend Setup**
 The frontend contains all the HTML, CSS, and client-side JavaScript.
-code
-Bash
+```bash
 # Navigate to the frontend directory from the root
 cd frontend
 
 # Install dev dependencies (for Tailwind CSS)
 npm install
-4. Start the Servers
+```
+**4. Start the Servers**
 You'll need two separate terminals to run both the backend and frontend development servers.
 Terminal 1: Start the Backend Server
-code
-Bash
+```bash
 # In the /backend directory
 npm run dev
+```
 Your Node.js API should now be running on http://localhost:3000.
 Terminal 2: Start the Frontend Tailwind Compiler
-code
-Bash
+```bash
 # In the /frontend directory
 npm run dev
+```
 This command will watch for changes in your HTML and tailwind.css files and automatically recompile your main.css file. To view the app, open frontend/index.html in your browser, preferably with a live-reloading extension like Live Server for VS Code.
-📁 Project Structure
+---
+## 📁 Project Structure
 The project is organized into two main parts: backend and frontend.
-code
-Code
+```bash
 personal-budget-tracker/
 ├── backend/
 │   ├── models/           # Mongoose schemas (Transaction, Budget)
@@ -110,24 +110,28 @@ personal-budget-tracker/
 │   └── tailwind.config.js# Tailwind CSS configuration
 │
 └── README.md
-🎨 Styling & Customization
+```
+---
+## 🎨 Styling & Customization
 This project uses Tailwind CSS for styling.
 Source File: All custom styles and Tailwind directives are in frontend/css/tailwind.css.
 Configuration: To customize colors, fonts, or extend Tailwind's default theme, edit the frontend/tailwind.config.js file.
 Build Command: The npm run dev script in the frontend directory uses the Tailwind CLI in "watch" mode for development.
 Build for Production
 To generate a minified and purged CSS file for production, run the following command in the frontend directory:
-code
-Bash
+```bash
 npm run build:css
-📱 Responsive Design
+```
+---
+## 📱 Responsive Design
 The app is built with a responsive, mobile-first approach using Tailwind CSS's standard breakpoints:
 sm: 640px
 md: 768px
 lg: 1024px
 xl: 1280px
 2xl: 1536px
-🤝 Contributing
+---
+##🤝 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 Fork the Project
 Create your Feature Branch (git checkout -b feature/AmazingFeature)
