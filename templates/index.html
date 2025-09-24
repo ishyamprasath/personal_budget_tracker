@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Personal Budget Tracker{% endblock %}
+
+{% block body_class %}min-h-screen bg-gradient-to-br from-primary-50 via-background to-secondary-50{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center">
+    <div class="redirect-container text-center bg-white bg-opacity-95 p-10 rounded-2xl shadow-2xl max-w-md w-full mx-4">
+        <div class="logo text-5xl mb-6">💰</div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Personal Budget Tracker</h1>
+        <p class="text-gray-600 mb-8">Welcome to your financial management dashboard</p>
+        <div class="loading-spinner w-10 h-10 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin mx-auto mb-6"></div>
+        <p class="text-gray-500 text-sm">Redirecting to login page...</p>
+    </div>
+</div>
+
+<script>
+    setTimeout(function() {
+        window.location.href = "{{ url_for('login') }}";
+    }, 2000);
+</script>
+
+<style>
+    .redirect-container {
+        animation: fadeIn 0.5s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .loading-spinner {
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+{% endblock %}

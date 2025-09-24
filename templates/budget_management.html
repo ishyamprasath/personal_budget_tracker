@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Budget Management - Personal Budget Tracker{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="relative bg-white shadow-elevation-1 border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-xl font-semibold text-text-primary">Personal Budget Tracker</h1>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="{{ url_for('dashboard') }}" class="text-text-secondary hover:text-text-primary px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">Dashboard</a>
+                <a href="{{ url_for('transactions') }}" class="text-text-secondary hover:text-text-primary px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">Transactions</a>
+                <a href="{{ url_for('budgets') }}" class="text-primary font-medium px-3 py-2 rounded-md bg-primary-50">Budgets</a>
+                <a href="{{ url_for('group_expenses') }}" class="text-text-secondary hover:text-text-primary px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">Group Expenses</a>
+                <a href="{{ url_for('reports') }}" class="text-text-secondary hover:text-text-primary px-3 py-2 rounded-md hover:bg-gray-50 transition-colors">Reports</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-text-secondary">Welcome, {{ session.user_name }}!</span>
+                <a href="{{ url_for('logout') }}" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors">Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-8">
+        <h2 class="text-3xl font-bold text-text-primary mb-2">Budget Management</h2>
+        <p class="text-text-secondary">Set and track your spending limits by category</p>
+    </div>
+
+    <!-- Add Budget Form -->
+    <div class="bg-white rounded-lg shadow-elevation-2 p-6 mb-8">
+        <h3 class="text-lg font-semibold text-text-primary mb-4">Create/Update Budget</h3>
+        <form action="{{ url_for('add_budget') }}" method="POST" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <input type="text" name="category" placeholder="Category (e.g., Food, Transport)" required 
+                   class="px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+            <input type="number" name="amount" step="0.01" placeholder="Budget Amount" required 
+                   class="px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+            <select name="period" required class="px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                <option value="">Select Period</option>
+                <option value="monthly">Monthly</option>
+                <option value="weekly">Weekly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+            <button type="submit" class="bg-primary hover:bg-primary-700 text-white py-2 px-4 rounded-lg transition-colors">
+                Set Budget
+            </button>
+        </form>
+    </div>
+
+    <!-- Budget List -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for budget in budgets %}
+        <div class="bg-white rounded-lg shadow-elevation-2 p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-text-primary">{{ budget.category }}</h3>
+                <span class="text-sm text-text-secondary bg-gray-100 px-2 py-1 rounded">{{ budget.period.title() }}</span>
+            </div>
+            <div class="mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm text-text-secondary">Budget Limit</span>
+                    <span class="text-lg font-bold text-primary">${{ "%.2f"|format(budget.amount) }}</span>
+                </div>
+                <!-- Progress bar placeholder - you can enhance this with actual spending data -->
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+                </div>
+                <div class="flex justify-between text-sm text-text-secondary mt-1">
+                    <span>Spent: $0.00</span>
+                    <span>45% used</span>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="text-primary hover:text-primary-700 text-sm font-medium">Edit Budget</button>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-span-full bg-white rounded-lg shadow-elevation-2 p-8 text-center">
+            <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+            <h3 class="text-lg font-medium text-text-primary mb-2">No Budgets Set</h3>
+            <p class="text-text-secondary mb-4">Create your first budget to start tracking your spending limits.</p>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

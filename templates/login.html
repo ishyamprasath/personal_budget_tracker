@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Personal Budget Tracker{% endblock %}
+
+{% block body_class %}min-h-screen bg-gradient-to-br from-primary-50 via-background to-secondary-50{% endblock %}
+
+{% block content %}
+<!-- Background Pattern -->
+<div class="absolute inset-0 opacity-5">
+    <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            </pattern>
+        </defs>
+        <rect width="100" height="100" fill="url(#grid)"/>
+    </svg>
+</div>
+
+<!-- Main Container -->
+<div class="relative min-h-screen flex items-center justify-center px-4 py-8">
+    <!-- Login Card -->
+    <div class="w-full max-w-md">
+        <!-- Logo Section -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-xl mb-4 shadow-elevation-2">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-semibold text-text-primary mb-2">Welcome Back</h1>
+            <p class="text-text-secondary">Sign in to your Personal Budget Tracker account</p>
+        </div>
+
+        <!-- Login Form Card -->
+        <div class="card p-8 shadow-elevation-3 bg-white rounded-lg">
+            <form method="POST" class="space-y-6">
+                <!-- Email Field -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-text-primary mb-2">
+                        Email Address
+                    </label>
+                    <div class="relative">
+                        <input type="email" id="email" name="email" required 
+                               class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 text-text-primary placeholder-text-secondary" 
+                               placeholder="Enter your email address" autocomplete="email" />
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-text-primary mb-2">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required minlength="6" 
+                               class="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 text-text-primary placeholder-text-secondary pr-12" 
+                               placeholder="Enter your password" autocomplete="current-password" />
+                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 flex items-center pr-3 text-text-secondary hover:text-text-primary transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-border rounded transition-colors" />
+                        <label for="remember" class="ml-2 block text-sm text-text-secondary">
+                            Remember me
+                        </label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="javascript:void(0)" class="font-medium text-primary hover:text-primary-700 transition-colors">
+                            Forgot password?
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sign In Button -->
+                <button type="submit" class="w-full bg-primary hover:bg-primary-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:shadow-elevation-2 focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                    Sign In
+                </button>
+
+                <!-- Demo Credentials -->
+                <div class="bg-accent-50 border border-accent-200 rounded-lg p-4 mt-4">
+                    <h4 class="text-sm font-medium text-accent-600 mb-2">Demo Credentials</h4>
+                    <div class="text-xs text-accent-600 space-y-1">
+                        <p><strong>Create a new account or use:</strong></p>
+                        <p>Email: demo@example.com</p>
+                        <p>Password: password123</p>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Create Account Section -->
+            <div class="mt-6 text-center">
+                <p class="text-sm text-text-secondary">
+                    Don't have an account? 
+                </p>
+                <form method="POST" action="{{ url_for('register') }}" class="mt-4 space-y-4">
+                    <input type="text" name="name" placeholder="Full Name" required 
+                           class="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                    <input type="email" name="email" placeholder="Email Address" required 
+                           class="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                    <input type="password" name="password" placeholder="Password (min 6 chars)" required minlength="6" 
+                           class="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                    <button type="submit" class="w-full bg-secondary hover:bg-secondary-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200">
+                        Create Account
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Security Indicators -->
+        <div class="mt-8 text-center">
+            <div class="flex items-center justify-center space-x-4 text-xs text-text-secondary">
+                <div class="flex items-center space-x-1">
+                    <svg class="w-4 h-4 text-success-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>SSL Secured</span>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <svg class="w-4 h-4 text-success-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>Privacy Protected</span>
+                </div>
+            </div>
+            <p class="mt-2 text-xs text-text-secondary">
+                © 2025 Personal Budget Tracker. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const password = document.getElementById('password');
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+    });
+</script>
+{% endblock %}
