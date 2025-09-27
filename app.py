@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import json
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key-change-this-in-production'  # Change this in production!
+app.secret_key = os.environ.get('SECRET_KEY', 'budget-tracker-secret-key-2024-production')
 
 # Database initialization
 def init_db():
@@ -557,4 +557,6 @@ def api_dashboard_data():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('FLASK_ENV') == 'development'
+    app.run(host='0.0.0.0', port=port, debug=debug)
